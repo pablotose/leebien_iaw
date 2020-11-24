@@ -1,0 +1,32 @@
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+.bg-dark {
+    background-color: red;
+}
+.navbar {
+    position: relative;
+    display: -ms-flexbox;
+    display: inline-flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+}
+.pruebaso {
+    background-color: red;
+}
+nav, a {
+    color: yellow;
+    text-decoration: none;
+}
+.navbar-link {
+    display: inline-flex;
+}

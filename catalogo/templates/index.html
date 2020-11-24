@@ -1,7 +1,27 @@
 {% extends "base_generic.html" %}
 
+<head>
+	<link rel="stylesheet" type="text/css" href="/catalogo/static/catalogo/css/navbar.css">
+	<style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
 
-{% block content %}
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+</head>
+<body>
+{% block content %} 
+ 
 <h1>LEEBIEN</h1>
 
   <p>1º Prueba de <em>LEEBIEN</em>, a very basic Django website developed as a tutorial example on the Mozilla Developer Network.</p>
@@ -21,3 +41,6 @@
  <!-- Add additional CSS in static file --> 
 {% load static %} 
 <link rel="stylesheet" href="{% static 'static/catalogo/style.css' %}">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
