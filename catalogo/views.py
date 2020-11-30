@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -21,7 +22,7 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
-    
+
 def index(request):
     """
     Función vista para la página inicio del sitio.
@@ -48,6 +49,7 @@ class BookListView(generic.ListView):
     #def get_queryset(self):
     #    return Libro.objects.filter(title_icontains='mierda')[:5]
 
+
 class BookDetailView(generic.DetailView):
     model = Libro
     template_name = 'catalog/detalle_libro.html'
@@ -62,3 +64,8 @@ class AutoDetailView(generic.DetailView):
     model = Autor
     template_name = 'catalog/detalle_autor.html'
     context_object_name = 'Autor'
+
+def auth(request):
+    if request.user.is_authenticated:
+        return render(request, "catalog/lista_libros.html")
+    return redirect('/accounts/login')

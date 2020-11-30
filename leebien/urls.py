@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^autores/$', views.AutoListView.as_view(),  name='autores'),
     url(r'^autors/(?P<pk>\d+)$', views.AutoDetailView.as_view(), name='detalle_autor'),
     url(r'^signup/$', views.signup, name='signup'),
+    url('auth/', views.auth, name='auth'),
 
 ]	
 
