@@ -7,8 +7,22 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from catalogo.models import *
+from catalogo.views import *
 
 
+
+from rest_framework import viewsets
+from catalogo.models import Libro , Autor
+from catalogo.api.serializers import LibroSerializer , AutorSerializer
+
+class LibroViewSet(viewsets.ModelViewSet):
+    queryset = Libro.objects.all()
+    serializer_class = LibroSerializer
+
+class AutorViewSet(viewsets.ModelViewSet):
+    queryset = Autor.objects.all()
+    serializer_class = AutorSerializer
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
