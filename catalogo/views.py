@@ -12,17 +12,28 @@ from catalogo.views import *
 
 
 
+
 from rest_framework import viewsets
 from catalogo.models import Libro , Autor
 from catalogo.api.serializers import LibroSerializer , AutorSerializer
+from django.db.models import Q
 
-class LibroViewSet(viewsets.ModelViewSet):
-    queryset = Libro.objects.all()
-    serializer_class = LibroSerializer
 
-class AutorViewSet(viewsets.ModelViewSet):
-    queryset = Autor.objects.all()
-    serializer_class = AutorSerializer
+def search(request):
+    query = request.GET.get('q', '')
+    if query:
+        qset = (
+            Q(titulo__icontains=query) 
+        )
+        results = Libro.objects.filter(qset).distinct()
+    else:
+        results = []
+    return render(request, "catalog/search.html", {
+        'libro': Libro,
+        "results": results,
+        "query": query
+    })
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
