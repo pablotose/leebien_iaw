@@ -3,11 +3,13 @@
 {% block content %}
   <h1>Titulo: {{ libro.titulo }}</h1>
 
-  <p><strong>Autor:</strong> <a href="{% url 'detalle_autor' libro.Autor.pk %}">{{ libro.Autor }}</a></p> --><!-- author detail link not yet defined -->
-  <p><strong>Resumen:</strong> {{ libro.Resumen }}</p>
-  <p><strong>ISBN:</strong> {{ libro.ISBN }}</p> 
+  <p><strong>Autor:</strong> <a href="{% url 'detalle_autor' libro.Autor.pk %}">{{ libro.Autor }}</a></p><!-- author detail link not yet defined -->
+  <p><strong>Fecha Publicación : </strong> {{ libro.Fecha_Publicacion }}</p>
+  <p><strong>Sinopsis:</strong> {{ libro.Resumen }}</p>
   <p><strong>Idioma:</strong> {{ libro.Idioma }}</p>  
-  <p><strong>Genero:</strong> {% for genero in libro.genero.all %} {{ genero }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>  
+  <p><strong>Genero:</strong> {% for genero in libro.genero.all %} {{ genero }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+  <p><strong>ISBN:</strong> {{ libro.ISBN }}</p> 
+
 
  <div style="margin-left:20px;margin-top:20px">
     <h4>Copies</h4>
