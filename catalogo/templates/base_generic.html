@@ -1,20 +1,37 @@
+{% load cookielaw_tags %}
+{% load analytical %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
   {% block title %}<title>LEEBIEN</title>{% endblock %}
+  {% analytical_head_top %}
+  <!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//172.18.0.3/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <!-- Add additional CSS in static file -->
+  {% analytical_head_bottom %}
 </head>
 
 <body>
-
+  {% analytical_body_top %}
+  
   <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #C2FFD6";>
   <!-- Brand/logo -->
   <a class="navbar-brand" href="#">
@@ -35,7 +52,9 @@
       <a class="nav-link" href="{% url 'signup'%}">Registrar</a>
     </li>
     {% if user.is_authenticated %}
-    <li>User: {{ user.get_username }}</li>
+    <li class="nav-item">
+      <a class="nav-link"> User: {{ user.get_username }}</a>
+      </li>
     <li class="nav-item">
       <a class="nav-link" href="{% url 'logout' %}?next={{request.path}}">Logout</a>
     </li>
@@ -44,6 +63,8 @@
       <a class="nav-link" href="{% url 'login' %}?next={{request.path}}">Login</a>
     </li>
     {% endif %}
+      <!--<a href="{% url 'social:begin' 'github' %}"> Iniciar Sesion con GitHub</a>
+    </li>-->
     <li class="nav-item">
       <a class="nav-link" href="{% url 'search' %}">Buscador</a>
     </li>
@@ -81,7 +102,20 @@
     </div>
 
   </div>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+   <script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+ </script>
+ <button class="g-recaptcha" 
+        data-sitekey="6LfD03gaAAAAAK3eh4yULIsFK6TP8fJn6cylpRa6" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
+
+  {% analytical_body_bottom %}
 </body>
+{% cookielaw_banner %}
 </html>
 
 

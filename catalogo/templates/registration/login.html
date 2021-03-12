@@ -6,13 +6,13 @@
 <p>Nombre de usuario y contraseña no coinciden. Intentelo de nuevo.</p>
 {% endif %}
 
-{% if next %}
+<!--{% if next %}-->
     {% if user.is_authenticated %}
     <p>Tu cuenta no tiene permiso para acceder a esta página. Para seguir , inicia sesión con una cuenta que pueda acceder.</p>
     {% else %}
     <p>Inicia sesión para ver está página.</p>
-    {% endif %}
-{% endif %}
+    
+<!--{% endif %}-->
 <div class="vacio">Inicia Sesión</div>
 <div  class="alcentro">
 <form method="post" action="{% url 'login' %}">
@@ -31,10 +31,13 @@
 <div>
   <input type="submit" value="login" />
   <input type="hidden" name="next" value="{{ next }}" />
+
 </div>
 </form>
 </div>
-{# Assumes you setup the password_reset view in your URLconf #}
+<!--{# Assumes you setup the password_reset view in your URLconf #}-->
 <p><a href="{% url 'password_reset' %}">¿Olvidaste la contraseña?</a></p>
+<a href="{% url 'social:begin' 'github' %}"> Iniciar Sesion con GitHub</a>
 
+{% endif %}
 {% endblock %}

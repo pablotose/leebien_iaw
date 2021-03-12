@@ -43,10 +43,12 @@ urlpatterns = [
     url(r'^autores/$', views.AutoListView.as_view(),  name='autores'),
     url(r'^autors/(?P<pk>\d+)$', login_required(views.AutoDetailView.as_view()), name='detalle_autor'),
     url(r'^signup/$', views.signup, name='signup'),
-    url('auth/', views.auth, name='auth'),
+    #url('auth/', views.auth, name='auth'),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls' , namespace = 'rest_framework')),
-    url(r'^search/$', views.search, name='search')
+    url(r'^search/$', views.search, name='search'),
+    path(r'openid/', include('django_openid_auth.urls')),
+    path(r'oauth/', include('social_django.urls' , namespace='social')),
 
 
 ]	

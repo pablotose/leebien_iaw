@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'catalogo.apps.CatalogoConfig',
     'bootstrap4',
     'rest_framework',
+    'django_openid_auth',
+    'social_django',
+    'cookielaw',
+    'analytical',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'leebien.urls'
@@ -70,6 +75,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #'django.template.context_processors.media'
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+                #'django.core.context_processors.request',
             ],
         },
     },
@@ -140,3 +149,20 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAdminUser'
     ],
 }
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
+OPENID_CREATE_USERS = True
+OPENID_UPDATE_DETAILS_FROM_SREG = True
+OPENID_SSO_SERVER_URL = 'https://login.launchpad.net/'
+
+AUTHENTICATION_BACKENDS = (
+    'django_openid_auth.auth.OpenIDBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.github.GithubOAuth2',
+)
+
+SOCIAL_AUTH_GITHUB_KEY = '3eb2575f4c49eaf4be24'
+SOCIAL_AUTH_GITHUB_SECRET = '48acd274979979cf5e6904a10ba48dae624aa5d4'
+#SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/" 
+GOOGLE_RECAPTCHA_SECRET_KEY = '6LfD03gaAAAAAFoa-z7BdVR9EgBEDQd3BQYRAUEq'
